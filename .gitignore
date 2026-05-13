@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Local-only config (not shared)
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Build
+dist/
+build/
+out/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
