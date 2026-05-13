@@ -1,4 +1,4 @@
-# {{PROJECT_NAME}}
+# foundry-agent-BYO-Cosmos-bicep-walkthrough
 
 > 此專案由 [repository-template](https://github.com/ownway22/repository-template) 初始化。
 
@@ -10,8 +10,8 @@
 
 ```bash
 # 1. Clone 此 repo（如果還沒有的話）
-git clone https://github.com/ownway22/{{PROJECT_NAME}}.git
-cd {{PROJECT_NAME}}
+git clone https://github.com/ownway22/foundry-agent-BYO-Cosmos-bicep-walkthrough.git
+cd foundry-agent-BYO-Cosmos-bicep-walkthrough
 
 # 2. 安裝依賴
 # TODO: 根據你的技術棧填寫

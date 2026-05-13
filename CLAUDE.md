@@ -1,4 +1,4 @@
-# {{PROJECT_NAME}}
+# foundry-agent-BYO-Cosmos-bicep-walkthrough
 
 ## 專案概述
 

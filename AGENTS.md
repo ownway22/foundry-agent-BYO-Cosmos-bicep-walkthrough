@@ -1,4 +1,4 @@
-# {{PROJECT_NAME}} - Agent 行為指南
+# foundry-agent-BYO-Cosmos-bicep-walkthrough - Agent 行為指南
 
 ## 通用原則
 
