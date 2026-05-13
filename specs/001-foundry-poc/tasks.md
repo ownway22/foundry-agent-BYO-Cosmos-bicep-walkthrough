@@ -15,9 +15,9 @@
 
 **目的**：建立 Phase 4 實作會使用的 IaC 與 script 結構。
 
-- [ ] T001 建立 `infra/modules/` 與 `infra/scripts/` 目錄結構
-- [ ] T002 [P] 在 `infra/main.bicepparam` 建立 POC 預設參數：`eastus`、`gpt-5.4`、`2026-03-05`、`GlobalStandard`、capacity `50`、`namePrefix='ms'`
-- [ ] T003 [P] 在 `infra/main.bicep` 建立 resource-group scope、共同參數、`ms` 命名 token、module orchestration skeleton 與 deployment outputs skeleton
+- [x] T001 建立 `infra/modules/` 與 `infra/scripts/` 目錄結構
+- [x] T002 [P] 在 `infra/main.bicepparam` 建立 POC 預設參數：`eastus`、`gpt-5.4`、`2026-03-05`、`GlobalStandard`、capacity `50`、`namePrefix='ms'`
+- [x] T003 [P] 在 `infra/main.bicep` 建立 resource-group scope、共同參數、`ms` 命名 token、module orchestration skeleton 與 deployment outputs skeleton
 
 ---
 
@@ -27,9 +27,9 @@
 
 **重要**：此階段完成前不可開始任何使用者故事工作。
 
-- [ ] T004 在 `infra/scripts/deploy.sh` 建立 Bash strict mode、argument parser、Azure CLI login check、target resource group existence check 與 help output skeleton
-- [ ] T005 [P] 在 `infra/scripts/verify.sh` 建立 Bash strict mode、argument parser、deployment outputs lookup skeleton 與 JSON parsing helper skeleton
-- [ ] T006 [P] 在 `infra/scripts/smoke-test-reasoning.sh` 建立 Bash strict mode、argument parser、deployment endpoint lookup skeleton 與 AAD token acquisition skeleton
+- [x] T004 在 `infra/scripts/deploy.sh` 建立 Bash strict mode、argument parser、Azure CLI login check、target resource group existence check 與 help output skeleton
+- [x] T005 [P] 在 `infra/scripts/verify.sh` 建立 Bash strict mode、argument parser、deployment outputs lookup skeleton 與 JSON parsing helper skeleton
+- [x] T006 [P] 在 `infra/scripts/smoke-test-reasoning.sh` 建立 Bash strict mode、argument parser、deployment endpoint lookup skeleton 與 AAD token acquisition skeleton
 
 **檢查點**：基礎 script 與 IaC entrypoint 就緒，可以開始使用者故事實作。
 
@@ -43,19 +43,19 @@
 
 ### 使用者故事 1 的實作
 
-- [ ] T007 [P] [US1] 在 `infra/modules/dependent-resources.bicep` 建立 Cosmos DB Serverless、StorageV2 flat namespace、AI Search Standard S1 與 User-Assigned Managed Identity
-- [ ] T008 [P] [US1] 在 `infra/modules/foundry-account.bicep` 建立 `Microsoft.CognitiveServices/accounts@2025-04-01-preview`、`disableLocalAuth=true`、`publicNetworkAccess='Enabled'`、account-level capability host `default` 與 `gpt-5.4` model deployment
-- [ ] T009 [US1] 在 `infra/modules/foundry-project.bicep` 建立 Foundry project，identity type 必須為 `SystemAssigned, UserAssigned` 並綁定 `ms-agent-mi-${token}` UMI
-- [ ] T010 [P] [US1] 在 `infra/modules/account-role-assignments.bicep` 建立 no-op compatibility module，接受 account/project IDs 與 Project SMI/UMI principal IDs，但 baseline 不建立任何未命名的 Foundry account/project role assignment
-- [ ] T011 [P] [US1] 在 `infra/modules/cosmosdb-role-assignments.bicep` 建立 Cosmos DB Operator control-plane assignment 與 Cosmos DB Built-in Data Contributor SQL role assignment，scope 必須是 Cosmos DB account
-- [ ] T012 [P] [US1] 在 `infra/modules/storage-role-assignments.bicep` 建立 Storage Account Contributor assignment 與 Foundry-generated blob container data role assignment patterns for Project SMI + UMI
-- [ ] T013 [P] [US1] 在 `infra/modules/search-role-assignments.bicep` 建立 Search Index Data Contributor 與 Search Service Contributor assignments for Project SMI + UMI
-- [ ] T014 [US1] 在 `infra/modules/project-connections.bicep` 建立 Cosmos DB、Storage、AI Search project connections，所有 connection 必須使用 `authType: 'AAD'`
-- [ ] T015 [US1] 在 `infra/modules/rbac-propagation-wait.bicep` 建立 Bash-only deploymentScript wait gate，等待 30-60 秒且 depends on all RBAC modules
-- [ ] T016 [US1] 在 `infra/modules/project-capability-host.bicep` 建立 immutable project capability host `default`，綁定 thread storage、file storage、vector store connections，並 depends on connections、RBAC modules 與 wait gate
-- [ ] T017 [US1] 在 `infra/main.bicep` 串接所有 modules、設定正確 `dependsOn` 鏈、輸出 `foundryAccountName`、`projectName`、`modelDeploymentName`、`cosmosDbAccountName`、`storageAccountName`、`searchServiceName`、`projectEndpoint`、`location`
-- [ ] T018 [US1] 在 `infra/scripts/deploy.sh` 實作 `az bicep build --file infra/main.bicep`、`az deployment group what-if`、terminal confirmation prompt，以及確認後才執行 `az deployment group create`
-- [ ] T019 [US1] 針對 `infra/main.bicep` 與 `infra/modules/*.bicep` 執行並修正 `az bicep build` 驗證問題
+- [x] T007 [P] [US1] 在 `infra/modules/dependent-resources.bicep` 建立 Cosmos DB Serverless、StorageV2 flat namespace、AI Search Standard S1 與 User-Assigned Managed Identity
+- [x] T008 [P] [US1] 在 `infra/modules/foundry-account.bicep` 建立 `Microsoft.CognitiveServices/accounts@2025-04-01-preview`、`disableLocalAuth=true`、`publicNetworkAccess='Enabled'`、account-level capability host `default` 與 `gpt-5.4` model deployment
+- [x] T009 [US1] 在 `infra/modules/foundry-project.bicep` 建立 Foundry project，identity type 必須為 `SystemAssigned, UserAssigned` 並綁定 `ms-agent-mi-${token}` UMI
+- [x] T010 [P] [US1] 在 `infra/modules/account-role-assignments.bicep` 建立 no-op compatibility module，接受 account/project IDs 與 Project SMI/UMI principal IDs，但 baseline 不建立任何未命名的 Foundry account/project role assignment
+- [x] T011 [P] [US1] 在 `infra/modules/cosmosdb-role-assignments.bicep` 建立 Cosmos DB Operator control-plane assignment 與 Cosmos DB Built-in Data Contributor SQL role assignment，scope 必須是 Cosmos DB account
+- [x] T012 [P] [US1] 在 `infra/modules/storage-role-assignments.bicep` 建立 Storage Account Contributor assignment 與 Foundry-generated blob container data role assignment patterns for Project SMI + UMI
+- [x] T013 [P] [US1] 在 `infra/modules/search-role-assignments.bicep` 建立 Search Index Data Contributor 與 Search Service Contributor assignments for Project SMI + UMI
+- [x] T014 [US1] 在 `infra/modules/project-connections.bicep` 建立 Cosmos DB、Storage、AI Search project connections，所有 connection 必須使用 `authType: 'AAD'`
+- [x] T015 [US1] 在 `infra/modules/rbac-propagation-wait.bicep` 建立 Bash-only deploymentScript wait gate，等待 30-60 秒且 depends on all RBAC modules
+- [x] T016 [US1] 在 `infra/modules/project-capability-host.bicep` 建立 immutable project capability host `default`，綁定 thread storage、file storage、vector store connections，並 depends on connections、RBAC modules 與 wait gate
+- [x] T017 [US1] 在 `infra/main.bicep` 串接所有 modules、設定正確 `dependsOn` 鏈、輸出 `foundryAccountName`、`projectName`、`modelDeploymentName`、`cosmosDbAccountName`、`storageAccountName`、`searchServiceName`、`projectEndpoint`、`location`
+- [x] T018 [US1] 在 `infra/scripts/deploy.sh` 實作 `az bicep build --file infra/main.bicep`、`az deployment group what-if`、terminal confirmation prompt，以及確認後才執行 `az deployment group create`
+- [x] T019 [US1] 針對 `infra/main.bicep` 與 `infra/modules/*.bicep` 執行並修正 `az bicep build` 驗證問題
 
 **檢查點**：US1 完成後，POC deployment definition 應可 build、what-if，並在使用者確認後部署完整資源拓樸。
 
@@ -69,16 +69,16 @@
 
 ### 使用者故事 2 的實作
 
-- [ ] T020 [US2] 在 `infra/scripts/verify.sh` 實作 account capability host 與 project capability host provisioning state 檢查，兩者都必須為 `Succeeded`
-- [ ] T021 [US2] 在 `infra/scripts/verify.sh` 實作 project capability host thread/file/vector bindings 檢查，必須對應 Cosmos DB、Storage、AI Search connection names
-- [ ] T022 [US2] 在 `infra/scripts/verify.sh` 實作 Foundry account `disableLocalAuth`、project `SystemAssigned, UserAssigned` identity 與 UMI binding 檢查
-- [ ] T023 [US2] 在 `infra/scripts/verify.sh` 實作 Cosmos DB、Storage、AI Search project connections 存在且 `authType` 為 `AAD` 的檢查
-- [ ] T024 [US2] 在 `infra/scripts/verify.sh` 實作 Cosmos DB `enterprise_memory` database 與 `thread-message-store`、`system-thread-message-store`、`agent-entity-store` containers 存在性檢查
-- [ ] T025 [US2] 在 `infra/scripts/verify.sh` 實作 model deployment state 與 model name/version/SKU/capacity 檢查
-- [ ] T026 [US2] 在 `infra/scripts/verify.sh` 實作 Cosmos DB Operator、Cosmos DB Built-in Data Contributor SQL role、Storage roles、Search roles 的 principal 與 scope 檢查
-- [ ] T027 [P] [US2] 在 `README.md` 新增 AAD-only security baseline、public network access POC caveat、Managed Identity/RBAC 說明與 no-secret constraints
-- [ ] T028 [US2] 在 `infra/scripts/deploy.sh` 確認所有 output/logging 不列印 API keys、connection strings、subscription IDs 或 secrets
-- [ ] T029 [US2] 針對 `infra/scripts/verify.sh` 執行 shell syntax validation，並修正 AAD/RBAC verification path 的 Bash 錯誤
+- [x] T020 [US2] 在 `infra/scripts/verify.sh` 實作 account capability host 與 project capability host provisioning state 檢查，兩者都必須為 `Succeeded`
+- [x] T021 [US2] 在 `infra/scripts/verify.sh` 實作 project capability host thread/file/vector bindings 檢查，必須對應 Cosmos DB、Storage、AI Search connection names
+- [x] T022 [US2] 在 `infra/scripts/verify.sh` 實作 Foundry account `disableLocalAuth`、project `SystemAssigned, UserAssigned` identity 與 UMI binding 檢查
+- [x] T023 [US2] 在 `infra/scripts/verify.sh` 實作 Cosmos DB、Storage、AI Search project connections 存在且 `authType` 為 `AAD` 的檢查
+- [x] T024 [US2] 在 `infra/scripts/verify.sh` 實作 Cosmos DB `enterprise_memory` database 與 `thread-message-store`、`system-thread-message-store`、`agent-entity-store` containers 存在性檢查
+- [x] T025 [US2] 在 `infra/scripts/verify.sh` 實作 model deployment state 與 model name/version/SKU/capacity 檢查
+- [x] T026 [US2] 在 `infra/scripts/verify.sh` 實作 Cosmos DB Operator、Cosmos DB Built-in Data Contributor SQL role、Storage roles、Search roles 的 principal 與 scope 檢查
+- [x] T027 [P] [US2] 在 `README.md` 新增 AAD-only security baseline、public network access POC caveat、Managed Identity/RBAC 說明與 no-secret constraints
+- [x] T028 [US2] 在 `infra/scripts/deploy.sh` 確認所有 output/logging 不列印 API keys、connection strings、subscription IDs 或 secrets
+- [x] T029 [US2] 針對 `infra/scripts/verify.sh` 執行 shell syntax validation，並修正 AAD/RBAC verification path 的 Bash 錯誤
 
 **檢查點**：US2 完成後，安全審核者可用單一 verification script 證明 AAD-only 與 RBAC baseline。
 
@@ -92,12 +92,12 @@
 
 ### 使用者故事 3 的實作
 
-- [ ] T030 [US3] 在 `infra/scripts/verify.sh` 實作 Chat Completions `Hello` smoke test，payload 不得包含 `temperature`、`top_p`、`presence_penalty`、`frequency_penalty`、`logprobs` 或 `logit_bias`
-- [ ] T031 [P] [US3] 在 `infra/scripts/smoke-test-reasoning.sh` 實作 AAD token-based `reasoning_effort: "low"` request，HTTP 400 時必須清楚輸出 response body
-- [ ] T032 [P] [US3] 在 `README.md` 新增 `gpt-5.4` reasoning model 注意事項、unsupported sampling parameters、`reasoning_effort` allowed values、Chat Completions smoke test 操作
-- [ ] T033 [P] [US3] 在 `README.md` 新增 East US quota/capacity failure 判讀，以及 `gpt-5.4-mini` `2026-03-17`、`gpt-5-mini` `2025-08-07` fallback 取捨與手動參數切換方式
-- [ ] T034 [US3] 在 `infra/main.bicepparam` 保留 `gpt-5.4` primary defaults，並以註解標示 fallback 必須由使用者顯式修改，不得 silent fallback
-- [ ] T035 [US3] 對 `infra/scripts/verify.sh` 與 `infra/scripts/smoke-test-reasoning.sh` 執行 grep 檢查，確認沒有傳送 unsupported sampling parameters
+- [x] T030 [US3] 在 `infra/scripts/verify.sh` 實作 Chat Completions `Hello` smoke test，payload 不得包含 `temperature`、`top_p`、`presence_penalty`、`frequency_penalty`、`logprobs` 或 `logit_bias`
+- [x] T031 [P] [US3] 在 `infra/scripts/smoke-test-reasoning.sh` 實作 AAD token-based `reasoning_effort: "low"` request，HTTP 400 時必須清楚輸出 response body
+- [x] T032 [P] [US3] 在 `README.md` 新增 `gpt-5.4` reasoning model 注意事項、unsupported sampling parameters、`reasoning_effort` allowed values、Chat Completions smoke test 操作
+- [x] T033 [P] [US3] 在 `README.md` 新增 East US quota/capacity failure 判讀，以及 `gpt-5.4-mini` `2026-03-17`、`gpt-5-mini` `2025-08-07` fallback 取捨與手動參數切換方式
+- [x] T034 [US3] 在 `infra/main.bicepparam` 保留 `gpt-5.4` primary defaults，並以註解標示 fallback 必須由使用者顯式修改，不得 silent fallback
+- [x] T035 [US3] 對 `infra/scripts/verify.sh` 與 `infra/scripts/smoke-test-reasoning.sh` 執行 grep 檢查，確認沒有傳送 unsupported sampling parameters
 
 **檢查點**：US3 完成後，開發者可用 AAD token smoke test 驗證 `gpt-5.4` 與 reasoning request path。
 
@@ -107,14 +107,14 @@
 
 **目的**：完成文件、格式、安全掃描與非部署 validation；除非使用者明確說 `deploy now`，不得執行實際部署。
 
-- [ ] T036 [P] 在 `README.md` 補齊 prerequisites、resource group assumption、`az deployment group what-if`、`infra/scripts/deploy.sh`、`infra/scripts/verify.sh` 與 `infra/scripts/smoke-test-reasoning.sh` 操作流程
-- [ ] T037 在 `infra/main.bicep` 與 `infra/modules/*.bicep` 檢查 Foundry API family 仍為 `2025-04-01-preview`；若 build/provider validation 要求 `2025-06-01`，停止並回報使用者審核
-- [ ] T038 在 `infra/main.bicep`、`infra/main.bicepparam`、`infra/modules/*.bicep`、`infra/scripts/*.sh`、`README.md` 執行 hardcoded secret、connection string、API key、subscription ID pattern scan 並移除違規內容
-- [ ] T039 在 `infra/main.bicep`、`infra/modules/*.bicep` 與 `README.md` 執行 out-of-scope feature scan，確認未加入 Private Endpoint、Managed VNet、APIM、CMK、Key Vault encryption 或 production monitoring baseline
-- [ ] T040 在 `infra/scripts/*.sh` 執行 Bash syntax validation，修正 syntax、quoting、exit-code handling 與 missing command checks
-- [ ] T041 在 `infra/main.bicep` 對完整 deployment graph 執行 `az deployment group what-if` dry-run guidance 驗證，確認不需要 existing resource IDs
-- [ ] T042 在 `README.md` 記錄 capability host immutability、RBAC propagation retry guidance、不得 update existing capability host 的操作邊界
-- [ ] T043 確認 `.specify/memory/constitution.md` 的 source-of-truth、phase-gate、secure IaC、guarded deployment 與 verification gates 仍與 `specs/001-foundry-poc/spec.md`、`plan.md`、`tasks.md` 一致
+- [x] T036 [P] 在 `README.md` 補齊 prerequisites、resource group assumption、`az deployment group what-if`、`infra/scripts/deploy.sh`、`infra/scripts/verify.sh` 與 `infra/scripts/smoke-test-reasoning.sh` 操作流程
+- [x] T037 在 `infra/main.bicep` 與 `infra/modules/*.bicep` 檢查 Foundry API family 仍為 `2025-04-01-preview`；若 build/provider validation 要求 `2025-06-01`，停止並回報使用者審核
+- [x] T038 在 `infra/main.bicep`、`infra/main.bicepparam`、`infra/modules/*.bicep`、`infra/scripts/*.sh`、`README.md` 執行 hardcoded secret、connection string、API key、subscription ID pattern scan 並移除違規內容
+- [x] T039 在 `infra/main.bicep`、`infra/modules/*.bicep` 與 `README.md` 執行 out-of-scope feature scan，確認未加入 Private Endpoint、Managed VNet、APIM、CMK、Key Vault encryption 或 production monitoring baseline
+- [x] T040 在 `infra/scripts/*.sh` 執行 Bash syntax validation，修正 syntax、quoting、exit-code handling 與 missing command checks
+- [X] T041 在 `infra/main.bicep` 對完整 deployment graph 執行 `az deployment group what-if` dry-run guidance 驗證，確認不需要 existing resource IDs
+- [x] T042 在 `README.md` 記錄 capability host immutability、RBAC propagation retry guidance、不得 update existing capability host 的操作邊界
+- [x] T043 確認 `.specify/memory/constitution.md` 的 source-of-truth、phase-gate、secure IaC、guarded deployment 與 verification gates 仍與 `specs/001-foundry-poc/spec.md`、`plan.md`、`tasks.md` 一致
 
 ---
 
