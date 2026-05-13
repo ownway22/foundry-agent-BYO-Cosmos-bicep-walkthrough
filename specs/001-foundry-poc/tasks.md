@@ -112,7 +112,7 @@
 - [x] T038 在 `infra/main.bicep`、`infra/main.bicepparam`、`infra/modules/*.bicep`、`infra/scripts/*.sh`、`README.md` 執行 hardcoded secret、connection string、API key、subscription ID pattern scan 並移除違規內容
 - [x] T039 在 `infra/main.bicep`、`infra/modules/*.bicep` 與 `README.md` 執行 out-of-scope feature scan，確認未加入 Private Endpoint、Managed VNet、APIM、CMK、Key Vault encryption 或 production monitoring baseline
 - [x] T040 在 `infra/scripts/*.sh` 執行 Bash syntax validation，修正 syntax、quoting、exit-code handling 與 missing command checks
-- [X] T041 在 `infra/main.bicep` 對完整 deployment graph 執行 `az deployment group what-if` dry-run guidance 驗證，確認不需要 existing resource IDs
+- [x] T041 在 `infra/main.bicep` 對完整 deployment graph 執行 `az deployment group what-if` dry-run guidance 驗證，確認不需要 existing resource IDs
 - [x] T042 在 `README.md` 記錄 capability host immutability、RBAC propagation retry guidance、不得 update existing capability host 的操作邊界
 - [x] T043 確認 `.specify/memory/constitution.md` 的 source-of-truth、phase-gate、secure IaC、guarded deployment 與 verification gates 仍與 `specs/001-foundry-poc/spec.md`、`plan.md`、`tasks.md` 一致
 
