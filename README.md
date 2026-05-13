@@ -4,6 +4,11 @@
 
 這份 README 的目標讀者是客戶端開發者：照順序完成 prerequisites、檢查參數、執行 deployment、再跑 verification。
 
+## 官方參考
+
+- Microsoft Learn: [Standard agent setup](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/standard-agent-setup)
+- Official Bicep sample: [43-standard-agent-setup-with-customization](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization)
+
 ## 你會部署什麼
 
 此 POC 會在既有 Azure resource group 中建立：
