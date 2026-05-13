@@ -132,6 +132,7 @@ module rbacPropagationWait 'modules/rbac-propagation-wait.bicep' = {
   params: {
     location: location
     waitSeconds: rbacPropagationWaitSeconds
+    userAssignedIdentityId: dependentResources.outputs.userAssignedIdentityId
   }
   dependsOn: [
     accountRoleAssignments
