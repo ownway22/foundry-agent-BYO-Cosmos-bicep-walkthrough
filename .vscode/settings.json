@@ -72,5 +72,21 @@
   // --- 7. 推薦擴充提醒 ---
   // 在工作區開啟時，VS Code 會主動推薦 .vscode/extensions.json 內列出的擴充。
   // 若尚未建立該檔，可透過：命令面板 →「Extensions: Configure Recommended Extensions」
-  "extensions.ignoreRecommendations": false
+  "extensions.ignoreRecommendations": false,
+
+  // --- 8. GitHub Copilot Agent 終端機權限控管 ---
+  // autoApprove 定義 Copilot Agent 終端機指令的自動核准規則。
+  // 僅允許唯讀、建置、lint、what-if 與建立資料夾等低風險操作。
+  // 高風險部署與刪除操作明確設為 false，避免 Agent 未經人工核准變更 Azure 資源。
+  "chat.tools.terminal.autoApprove": {
+    "az bicep build": true,
+    "az bicep lint": true,
+    "az bicep what-if": true,
+    "az deployment group what-if": true,
+    "ls": true,
+    "cat": true,
+    "mkdir": true,
+    "az deployment group create": false,
+    "az deployment group delete": false
+  }
 }

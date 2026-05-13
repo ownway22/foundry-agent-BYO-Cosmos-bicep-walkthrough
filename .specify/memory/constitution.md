@@ -1,50 +1,36 @@
-# [專案名稱] 憲章
-<!-- 範例：Spec 憲章、TaskFlow 憲章等 -->
+# Foundry Agent BYO Cosmos Bicep Walkthrough Constitution
 
-## 核心原則
+## Core Principles
 
-### [原則一名稱]
-<!-- 範例：I. 函式庫優先 (Library-First) -->
-[原則一說明]
-<!-- 範例：每個功能都從獨立函式庫開始；函式庫必須自包含、可獨立測試、有完整文件；需有明確目的——不可建立僅為組織用途的函式庫 -->
+### I. Source-of-truth Alignment
 
-### [原則二名稱]
-<!-- 範例：II. 命令列介面 (CLI Interface) -->
-[原則二說明]
-<!-- 範例：每個函式庫都透過命令列介面 (CLI) 公開功能；文字輸入/輸出協定：stdin/args → stdout，錯誤 → stderr；支援 JSON + 人類可讀格式 -->
+`foundry-standard-agent-bicep-walkthrough.md` is the source of truth for Microsoft Foundry Standard Agent Setup architecture, RBAC ordering, capability host behavior, and known pitfalls. If a spec, plan, task, or implementation detail conflicts with that walkthrough, work must stop and the user must decide.
 
-### [原則三名稱]
-<!-- 範例：III. 測試優先（不可妥協）(Test-First, NON-NEGOTIABLE) -->
-[原則三說明]
-<!-- 範例：測試驅動開發 (TDD) 為必要條件：撰寫測試 → 使用者核准 → 測試失敗 → 然後實作；嚴格執行紅-綠-重構 (Red-Green-Refactor) 循環 -->
+### II. Phase-gated Spec-driven Delivery
 
-### [原則四名稱]
-<!-- 範例：IV. 整合測試 (Integration Testing) -->
-[原則四說明]
-<!-- 範例：需要整合測試的重點領域：新函式庫契約測試、契約變更、服務間通訊、共用結構 (Schema) -->
+Work proceeds in explicit phases: spec, plan, tasks, then implementation. Each phase must be reviewed before the next phase begins. Implementation files under `infra/` must not be created before tasks are approved.
 
-### [原則五名稱]
-<!-- 範例：V. 可觀測性 (Observability)、VI. 版本控制與破壞性變更 (Versioning & Breaking Changes)、VII. 簡約原則 (Simplicity) -->
-[原則五說明]
-<!-- 範例：文字輸入/輸出確保可除錯性；需要結構化日誌記錄；或：使用 MAJOR.MINOR.BUILD 格式；或：從簡單開始，YAGNI 原則 -->
+### III. Secure Azure Infrastructure as Code
 
-## [區段二名稱]
-<!-- 範例：附加約束條件、安全性需求、效能標準等 -->
+Bicep is the baseline for Azure resources. Templates and scripts must not hardcode secrets, API keys, connection strings, service principal secrets, or subscription IDs. Managed Identity and least-privilege RBAC are required for data access.
 
-[區段二內容]
-<!-- 範例：技術堆疊需求、合規標準、部署政策等 -->
+### IV. Guarded Deployment
 
-## [區段三名稱]
-<!-- 範例：開發工作流程、審查流程、品質關卡等 -->
+The implementation may build Bicep and run `az deployment group what-if` during validation. It must not run `az deployment group create` unless the user explicitly says `deploy now` and any deployment script must prompt before creating resources.
 
-[區段三內容]
-<!-- 範例：程式碼審查需求、測試關卡、部署核准流程等 -->
+### V. Verification-first Acceptance
 
-## 治理
-<!-- 範例：憲章優先於所有其他實務；修訂需要文件、核准、遷移計畫 -->
+Each deployable increment must include a verification path. For this POC, verification must cover capability hosts, AAD-only connections, managed identities, RBAC scopes, Cosmos DB `enterprise_memory` storage, model deployment state, and `gpt-5.4` smoke tests without unsupported sampling parameters.
 
-[治理規則]
-<!-- 範例：所有 PR / 審查必須驗證合規性；複雜性必須有正當理由；使用 [指引檔案] 作為執行階段開發指引 -->
+## Additional Constraints
 
-**版本**：[憲章版本] | **批准日期**：[批准日期] | **最後修訂**：[最後修訂日期]
-<!-- 範例：版本：2.1.1 | 批准日期：2025-06-13 | 最後修訂：2025-07-16 -->
+- Public network access is allowed only for this POC variant and must not weaken identity, authentication, or RBAC requirements.
+- Capability hosts are immutable after success; changes to bindings require delete/recreate guidance instead of update-in-place behavior.
+- Foundry resource API versions remain pinned to `2025-04-01-preview` unless validation requires a user-approved change.
+- Bash is the only script language for deployment and verification.
+
+## Governance
+
+This constitution applies to the current repository. Changes to these principles require an explicit user request or approval. Any future spec, plan, tasks, or implementation review must check alignment with this file before proceeding.
+
+**Version**：1.0.0 | **Approved Date**：2026-05-13 | **Last Amended**：2026-05-13
